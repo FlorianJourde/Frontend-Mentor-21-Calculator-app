@@ -1,4 +1,85 @@
-:root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  html {
+    font-family: "League Spartan", system-ui, sans-serif;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #3b4664;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+.wrapper {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  flex-direction: inherit;
+  flex-wrap: inherit;
+  gap: inherit;
+  z-index: inherit;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  @apply rounded-md flex justify-center align-middle bg-[#e8e4db] text-[#404355] text-3xl font-bold p-3 shadow-[0_4px_0px_0px_#b3a296] -translate-y-1 transition-all
+}
+
+.btn:hover {
+  @apply bg-[#c9c1ac] translate-y-0 shadow-[0_0px_0px_0px_#b3a296]
+}
+
+.btn-blue {
+  @apply bg-[#647297] uppercase text-white shadow-[0_4px_0px_0px_#404e75]
+}
+
+.btn-blue:hover {
+  @apply bg-[#53638e] shadow-[0_0px_0px_0px_#404e75]
+}
+
+.btn-red {
+  @apply bg-[#d13f30] uppercase text-white shadow-[0_4px_0px_0px_#94261a]
+}
+
+.btn-red:hover {
+  @apply bg-[#b13427] shadow-[0_0px_0px_0px_#94261a]
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +146,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
