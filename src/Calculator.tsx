@@ -1,60 +1,72 @@
-import { useEffect, useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+import { useState } from 'react'
 
-// let storedValues: string[] = [];
-// let currentValues: string[] = [];
+// let storeResult: string[] = [];
+let storeValue: number = 0;
+let endTypingNumber: boolean = false;
+let currentTypingNumber: string= '0';
 
 function Calculator() {
   const [value, setValue] = useState<string>('0');
-  const [storedValues, setStoredValues] = useState<string[]>([]);
-  const [endNumberTyping, setEndNumberTyping] = useState<boolean>(true)
+  // const [storedValues, setStoredValues] = useState<string[]>([]);
+  // const [endNumberTyping, setEndNumberTyping] = useState<boolean>(true)
 
-  // useEffect(() => {
-  //   console.log(storedValues);
 
-  //   // action on update of movies
-  // }, [storedValues]);
 
   // useEffect(() => { console.log(value), [value] });
+  // useEffect(() => { console.log(storedValues.length), [storedValues] });
   // useEffect(() => { console.log(storedValues), [storedValues] });
   // useEffect(() => { console.log(endNumberTyping), [endNumberTyping] });
 
-
-  // console.log(storedValues);
-
-  // console.log(6*(3+6));
-
-
   function storeResult() {
-    // setValue('0');
-    setStoredValues(currentValues => [...currentValues, value]);
+    // storeResult.push(value);
+    // storeValue = value;
+    // if (!storeValue) {
+    storeValue = storeValue + parseFloat(value);
+
+    // setValue(storeValue.toString())
+    // }
+    // console.log(storeValue);
+
+    // if (storedValues.length > 0) {
+
+
+    // storeResult[] = value;
+    // console.log(storeResult);
+
+    // if (storedValues.length > 0) {
     // console.log(storedValues);
+    // const sum = storedValues.reduce(
+    //   (accumulator, currentValue) => accumulator + parseFloat(currentValue)
+    //   );
+
+    // console.log(sum);
+    // console.log('1 :', storedValues);
+    // setStoredValues(currentValues => [...currentValues, value]);
+    // console.log('2 :', storedValues);
+
+    // }
 
   }
 
+  function reinitDisplay() {
+    // setValue(storeValue.toString())
+    // if (storedValues.length > 0) {
+    //   setValue(storedValues[0])
+    //   // console.log(storedValues);
+    // } else {
+    //   setValue('0')
+    // }
+    // if (storeResult.length > 0) {
+    //   // setValue(storeResult[0])
+    //   // console.log(storedValues);
+    // } else {
+    //   setValue('0')
+    // }
+  }
+
   function calculate(operator: string) {
-    // console.log(storedValues);
-    // const sum = storedValues.filter(acc, value => )
     switch (operator) {
       case 'add':
-        // console.log('+');
-        // console.log(storedValues.length > 0);
-        // if (storedValues.length > 0) {
-        // const sum = storedValues.reduce(
-        //   (acc, value) => parseFloat(acc) + parseFloat(value),
-        //   value,
-        // );
-        // // setStoredValues([sum.toString()]);
-        // // setValue(sum.toString())
-        // // console.log(sum);
-        // }
-        // const sum = storedValues.reduce(
-        //   (acc, value) => acc + parseInt(value),
-        //   0,
-        // );
-        // console.log(storedValues);
         break;
       case 'substract':
         console.log('-');
@@ -70,63 +82,39 @@ function Calculator() {
 
   function reset() {
     setValue('0');
-    setStoredValues([])
-    // storedValues = [];
+    // setStoredValues([])
   }
 
   function add(a: number, b: number) { }
-
   function substract(a: number, b: number) { }
-
   function multiply(a: number, b: number) { }
-
   function divide(a: number, b: number) { }
 
   const handleClick = (e: any) => {
     const clickedButton = (e.currentTarget as HTMLButtonElement);
     const calculatorFunctionType = clickedButton.getAttribute('data-type')
     const clickedButtonValue = clickedButton.value
-    // console.log(calculatorFunctionType);
 
     switch (calculatorFunctionType) {
       case 'numeric':
-        setEndNumberTyping(false);
+        // setEndNumberTyping(false);
         updateValue(clickedButton.value);
+        // reinitDisplay();
 
-      //     if (storedValues.length > 0) {
-      //   setValue(storedValues[0])
-      //   updateValue(clickedButton.value);
-
-      // }
-
-        // storedValues.length === 0 ? setValue('0') : setValue(storedValues[0])
-        // if (storedValues.length > 0) {
-        //   setValue(storedValues[0])
-        //   updateValue(clickedButton.value);
-
-        // }
-
-        // storedValues.length > 0 ? setValue('0') : setValue(storedValues[0])
-
-
+        // endTypingNumber = false
         break;
       case 'operator':
-        setEndNumberTyping(true);
-        // setValue(storedValues[0])
-        // storedValues.length === 0 ? 0 : storedValues[0]
+        // setEndNumberTyping(true);
+        // endTypingNumber = true
+        // console.log(endTypingNumber);
+        setValue(storeValue.toString())
+        
         storeResult();
-        // storedValues.length === 0 ? 0 : storedValues[0]
+        // calculate(clickedButtonValue);
+        // reinitDisplay();
 
-        // storedValues.length === 0 ? setValue('0') : setValue(storedValues[0])
-        // console.log(storedValues.length);
 
-        // console.log(storedValues);
-
-        // updateValue('0');
-        // console.log(clickedButtonValue);
-        calculate(clickedButtonValue);
         break;
-
       case 'function':
         if (clickedButtonValue === 'Del') {
         } else if (clickedButtonValue === 'Reset') {
@@ -137,26 +125,19 @@ function Calculator() {
   };
 
   const updateValue = (number: any) => {
-    // setEndNumberTyping(false);
-    let newValue: string;
-
-    console.log(number);
-    console.log(value);
-    console.log(storedValues);
+    // endTypingNumber === true ? value : setValue('0')
     
-    
-    if (storedValues.length > 0) {
-      setValue('0')
-    }
-      
-      value === '0' ? newValue = number : newValue = value.concat('', number)
-      
-      if (value.includes('.') && number === '.') return;
-      
-      console.log(value);
-      console.log(newValue);
+    // let newValue: string;
+    // value === '0' ? newValue = number : newValue = value.concat('', number)
+    currentTypingNumber = currentTypingNumber.concat('', number)
+    setValue(currentTypingNumber)
+    while(currentTypingNumber.charAt(0) == '0' ) currentTypingNumber = currentTypingNumber.substring(1);
+    if (value.includes('.') && number === '.') return;
 
-    setValue(newValue)
+    // newValue = value.concat('', number)
+    
+    console.log(currentTypingNumber);
+    console.log(storeValue);
   }
 
   return (
