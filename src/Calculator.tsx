@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // let storeResult: string[] = [];
 let storeValue: number = 0;
@@ -6,13 +6,15 @@ let endTypingNumber: boolean = false;
 let currentTypingNumber: string= '0';
 
 function Calculator() {
+  const [total, setTotal] = useState<number>(0);
+  const [operator, setOperator] = useState<string>('');
   const [value, setValue] = useState<string>('0');
   // const [storedValues, setStoredValues] = useState<string[]>([]);
   // const [endNumberTyping, setEndNumberTyping] = useState<boolean>(true)
 
 
 
-  // useEffect(() => { console.log(value), [value] });
+  useEffect(() => { console.log(value), [value] });
   // useEffect(() => { console.log(storedValues.length), [storedValues] });
   // useEffect(() => { console.log(storedValues), [storedValues] });
   // useEffect(() => { console.log(endNumberTyping), [endNumberTyping] });
@@ -69,13 +71,13 @@ function Calculator() {
       case 'add':
         break;
       case 'substract':
-        console.log('-');
+        // console.log('-');
         break;
       case 'divide':
-        console.log('/');
+        // console.log('/');
         break;
       case 'multiply':
-        console.log('*');
+        // console.log('*');
         break;
     }
   }
@@ -84,11 +86,6 @@ function Calculator() {
     setValue('0');
     // setStoredValues([])
   }
-
-  function add(a: number, b: number) { }
-  function substract(a: number, b: number) { }
-  function multiply(a: number, b: number) { }
-  function divide(a: number, b: number) { }
 
   const handleClick = (e: any) => {
     const clickedButton = (e.currentTarget as HTMLButtonElement);
@@ -136,8 +133,8 @@ function Calculator() {
 
     // newValue = value.concat('', number)
     
-    console.log(currentTypingNumber);
-    console.log(storeValue);
+    // console.log(currentTypingNumber);
+    // console.log(storeValue);
   }
 
   return (
@@ -164,8 +161,9 @@ function Calculator() {
             </div>
           </div>
         </div> */}
-        <div className="display flex p-8 rounded-lg justify-end align-middle bg-[#181f32] text-white text-3xl font-bold">
-          <h3>{value}</h3>
+        <div className="display flex flex-col text-right p-8 rounded-lg justify-end bg-[#181f32] text-white font-bold">
+          <h3 className="text-2xl">{total} {operator}</h3>
+          <h2 className='text-3xl'>{value}</h2>
         </div>
         <div className="keyboard bg-[#252d44] p-8 rounded-lg grid grid-cols-4 gap-5">
           <button value="7" onClick={handleClick} data-type="numeric" className="btn">7</button>
