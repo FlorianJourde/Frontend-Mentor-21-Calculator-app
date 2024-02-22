@@ -60,7 +60,11 @@ select {
 }
 
 .btn:hover {
-  @apply bg-[#c9c1ac] translate-y-0 shadow-[0_0px_0px_0px_#b3a296]
+  @apply bg-[#c9c1ac]
+}
+
+.btn.clicked {
+  @apply  translate-y-0 shadow-[0_0px_0px_0px_#b3a296]
 }
 
 .btn-blue {
@@ -68,7 +72,11 @@ select {
 }
 
 .btn-blue:hover {
-  @apply bg-[#53638e] shadow-[0_0px_0px_0px_#404e75]
+  @apply bg-[#53638e]
+}
+
+.btn-blue.clicked {
+  @apply shadow-[0_0px_0px_0px_#404e75]
 }
 
 .btn-red {
@@ -76,9 +84,12 @@ select {
 }
 
 .btn-red:hover {
-  @apply bg-[#b13427] shadow-[0_0px_0px_0px_#94261a]
+  @apply bg-[#b13427]
 }
 
+.btn-red.clicked {
+  @apply shadow-[0_0px_0px_0px_#94261a]
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
