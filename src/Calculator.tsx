@@ -1,90 +1,37 @@
 import { useEffect, useState } from 'react'
 
-// let storeResult: string[] = [];
 let storeValue: number = 0;
 let endTypingNumber: boolean = false;
-let currentTypingNumber: string= '0';
+let currentTypingNumber: string = '0';
 
 function Calculator() {
   const [total, setTotal] = useState<number>(0);
   const [operator, setOperator] = useState<string>('');
   const [value, setValue] = useState<string>('0');
-  // const [storedValues, setStoredValues] = useState<string[]>([]);
-  // const [endNumberTyping, setEndNumberTyping] = useState<boolean>(true)
-
-
 
   useEffect(() => { console.log(value), [value] });
-  // useEffect(() => { console.log(storedValues.length), [storedValues] });
-  // useEffect(() => { console.log(storedValues), [storedValues] });
-  // useEffect(() => { console.log(endNumberTyping), [endNumberTyping] });
 
   function storeResult() {
-    // storeResult.push(value);
-    // storeValue = value;
-    // if (!storeValue) {
     storeValue = storeValue + parseFloat(value);
-
-    // setValue(storeValue.toString())
-    // }
-    // console.log(storeValue);
-
-    // if (storedValues.length > 0) {
-
-
-    // storeResult[] = value;
-    // console.log(storeResult);
-
-    // if (storedValues.length > 0) {
-    // console.log(storedValues);
-    // const sum = storedValues.reduce(
-    //   (accumulator, currentValue) => accumulator + parseFloat(currentValue)
-    //   );
-
-    // console.log(sum);
-    // console.log('1 :', storedValues);
-    // setStoredValues(currentValues => [...currentValues, value]);
-    // console.log('2 :', storedValues);
-
-    // }
-
   }
 
-  function reinitDisplay() {
-    // setValue(storeValue.toString())
-    // if (storedValues.length > 0) {
-    //   setValue(storedValues[0])
-    //   // console.log(storedValues);
-    // } else {
-    //   setValue('0')
-    // }
-    // if (storeResult.length > 0) {
-    //   // setValue(storeResult[0])
-    //   // console.log(storedValues);
-    // } else {
-    //   setValue('0')
-    // }
-  }
+  function reinitDisplay() { }
 
   function calculate(operator: string) {
     switch (operator) {
       case 'add':
         break;
       case 'substract':
-        // console.log('-');
         break;
       case 'divide':
-        // console.log('/');
         break;
       case 'multiply':
-        // console.log('*');
         break;
     }
   }
 
   function reset() {
     setValue('0');
-    // setStoredValues([])
   }
 
   const handleClick = (e: any) => {
@@ -94,23 +41,11 @@ function Calculator() {
 
     switch (calculatorFunctionType) {
       case 'numeric':
-        // setEndNumberTyping(false);
         updateValue(clickedButton.value);
-        // reinitDisplay();
-
-        // endTypingNumber = false
         break;
       case 'operator':
-        // setEndNumberTyping(true);
-        // endTypingNumber = true
-        // console.log(endTypingNumber);
         setValue(storeValue.toString())
-        
         storeResult();
-        // calculate(clickedButtonValue);
-        // reinitDisplay();
-
-
         break;
       case 'function':
         if (clickedButtonValue === 'Del') {
@@ -122,19 +57,10 @@ function Calculator() {
   };
 
   const updateValue = (number: any) => {
-    // endTypingNumber === true ? value : setValue('0')
-    
-    // let newValue: string;
-    // value === '0' ? newValue = number : newValue = value.concat('', number)
     currentTypingNumber = currentTypingNumber.concat('', number)
     setValue(currentTypingNumber)
-    while(currentTypingNumber.charAt(0) == '0' ) currentTypingNumber = currentTypingNumber.substring(1);
+    while (currentTypingNumber.charAt(0) == '0') currentTypingNumber = currentTypingNumber.substring(1);
     if (value.includes('.') && number === '.') return;
-
-    // newValue = value.concat('', number)
-    
-    // console.log(currentTypingNumber);
-    // console.log(storeValue);
   }
 
   return (
