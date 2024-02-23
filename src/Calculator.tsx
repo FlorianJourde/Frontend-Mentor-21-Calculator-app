@@ -4,6 +4,8 @@ export default function Calculator() {
   const [total, setTotal] = useState<number>(0);
   const [operator, setOperator] = useState<string>('');
   const [typing, setTyping] = useState<string>('0');
+  const [showResult, setShowResult] = useState<boolean>(false)
+  const keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
   // useEffect(() => { console.log(total); }, [total]);
   // useEffect(() => { console.log(operator); }, [operator]);
@@ -28,6 +30,7 @@ export default function Calculator() {
     const clickedButtonValue = clickedButton.value
 
     animateButton(clickedButton);
+    setShowResult(false);
 
     switch (calculatorFunctionType) {
       case 'numeric':
@@ -49,6 +52,7 @@ export default function Calculator() {
           // updateOperation(true);
           setOperator('')
           setTyping('0')
+          setShowResult(true)
           // setOperator(clickedButtonValue);
           // setTotal(0);
           // setTyping(total.toString());
@@ -92,6 +96,7 @@ export default function Calculator() {
   return (
     <div className="wrapper">
       <div className='calculator flex flex-col gap-8'>
+
         {/* <div className="header">
           <div className="logo"></div>
           <div className="theme">
@@ -112,29 +117,39 @@ export default function Calculator() {
             </div>
           </div>
         </div> */}
-        <div className="display flex flex-col text-right p-8 rounded-lg justify-end bg-[#181f32] text-white font-bold">
-          <h3 className={'text-2xl transition-all' + ' ' + (total === 0 ? 'opacity-0 translate-y-2' : 'translate-y-1')}>{total} {operator}</h3>
-          <h2 className='text-3xl'>{typing}</h2>
+
+        <div className={'display flex flex-col text-right p-8 rounded-lg justify-end bg-[#181f32] text-white font-bold' + ' ' + (showResult === true && 'flex-col-reverse')}>
+          <h3 className={(total === 0 ? 'opacity-0' : '') + ' ' + (showResult === true ? 'text-4xl' : 'text-2xl')}>{total} {operator}</h3>
+          <h2 className={(showResult === true ? 'text-2xl opacity-0' : 'text-4xl')}>{typing}</h2>
         </div>
-        <div className="keyboard bg-[#252d44] p-8 rounded-lg grid grid-cols-4 gap-5">
-          <button value="7" onClick={handleClick} data-type="numeric" className="btn">7</button>
-          <button value="8" onClick={handleClick} data-type="numeric" className="btn">8</button>
-          <button value="9" onClick={handleClick} data-type="numeric" className="btn">9</button>
-          <button value="Del" onClick={handleClick} data-type="function" className="btn btn-blue">Del</button>
-          <button value="4" onClick={handleClick} data-type="numeric" className="btn">4</button>
-          <button value="5" onClick={handleClick} data-type="numeric" className="btn">5</button>
-          <button value="6" onClick={handleClick} data-type="numeric" className="btn">6</button>
-          <button value="+" onClick={handleClick} data-type="operator" className="btn">+</button>
+
+        {/* <div className="keyboard bg-[#252d44] p-8 rounded-lg grid grid-cols-4 gap-5"> */}
+
+        <div className="keyboard bg-[#252d44] p-8 rounded-lg">
+
+          {keys.map((key) => (
+            <button key={key} value={key} onClick={handleClick} data-type="numeric" className="btn">{key}</button>
+          ))}
+
+          {/* <button value="0" onClick={handleClick} data-type="numeric" className="btn">0</button>
           <button value="1" onClick={handleClick} data-type="numeric" className="btn">1</button>
           <button value="2" onClick={handleClick} data-type="numeric" className="btn">2</button>
           <button value="3" onClick={handleClick} data-type="numeric" className="btn">3</button>
+          <button value="4" onClick={handleClick} data-type="numeric" className="btn">4</button>
+          <button value="5" onClick={handleClick} data-type="numeric" className="btn">5</button>
+          <button value="6" onClick={handleClick} data-type="numeric" className="btn">6</button>
+          <button value="7" onClick={handleClick} data-type="numeric" className="btn">7</button>
+          <button value="8" onClick={handleClick} data-type="numeric" className="btn">8</button>
+          <button value="9" onClick={handleClick} data-type="numeric" className="btn">9</button> */}
+
+          <button value="Del" onClick={handleClick} data-type="function" className="btn btn-blue">Del</button>
+          <button value="+" onClick={handleClick} data-type="operator" className="btn">+</button>
           <button value="-" onClick={handleClick} data-type="operator" className="btn">-</button>
           <button value="." onClick={handleClick} data-type="numeric" className="btn">.</button>
-          <button value="0" onClick={handleClick} data-type="numeric" className="btn">0</button>
           <button value="/" onClick={handleClick} data-type="operator" className="btn">/</button>
           <button value="x" onClick={handleClick} data-type="operator" className="btn">x</button>
-          <button value="Reset" onClick={handleClick} data-type="function" className="btn btn-blue col-span-2">Reset</button>
-          <button value="=" onClick={handleClick} data-type="function" className="btn btn-red col-span-2">=</button>
+          <button value="Reset" onClick={handleClick} data-type="function" className="btn btn-blue">Reset</button>
+          <button value="=" onClick={handleClick} data-type="function" className="btn btn-red">=</button>
         </div>
       </div>
     </div>
