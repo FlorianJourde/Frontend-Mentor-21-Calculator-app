@@ -49,13 +49,9 @@ export default function Calculator() {
         }
         else if (clickedButtonValue === '=') {
           updateOperation();
-          // updateOperation(true);
           setOperator('')
           setTyping('0')
           setShowResult(true)
-          // setOperator(clickedButtonValue);
-          // setTotal(0);
-          // setTyping(total.toString());
         }
         break;
     }
@@ -86,8 +82,6 @@ export default function Calculator() {
 
     if (operator.length > 0 && typing !== '0') {
       setTotal(parseFloat(resolveCalc.toFixed(4)))
-      // setTotal(0);
-      // setTyping(resolveCalc.toString());
     } else if (typing !== '0') {
       setTotal(parseFloat(typing))
     }
@@ -130,17 +124,6 @@ export default function Calculator() {
           {keys.map((key) => (
             <button key={key} value={key} onClick={handleClick} data-type="numeric" className="btn">{key}</button>
           ))}
-
-          {/* <button value="0" onClick={handleClick} data-type="numeric" className="btn">0</button>
-          <button value="1" onClick={handleClick} data-type="numeric" className="btn">1</button>
-          <button value="2" onClick={handleClick} data-type="numeric" className="btn">2</button>
-          <button value="3" onClick={handleClick} data-type="numeric" className="btn">3</button>
-          <button value="4" onClick={handleClick} data-type="numeric" className="btn">4</button>
-          <button value="5" onClick={handleClick} data-type="numeric" className="btn">5</button>
-          <button value="6" onClick={handleClick} data-type="numeric" className="btn">6</button>
-          <button value="7" onClick={handleClick} data-type="numeric" className="btn">7</button>
-          <button value="8" onClick={handleClick} data-type="numeric" className="btn">8</button>
-          <button value="9" onClick={handleClick} data-type="numeric" className="btn">9</button> */}
 
           <button value="Del" onClick={handleClick} data-type="function" className="btn btn-blue">Del</button>
           <button value="+" onClick={handleClick} data-type="operator" className="btn">+</button>
