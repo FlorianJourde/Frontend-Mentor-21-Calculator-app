@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 export default function Calculator() {
   const [total, setTotal] = useState<number>(0);
   const [operator, setOperator] = useState<string>('');
-  const [currentValue, setCurrentValue] = useState<string>('0');
+  const [typing, setTyping] = useState<string>('0');
 
   // useEffect(() => { console.log(total); }, [total]);
   // useEffect(() => { console.log(operator); }, [operator]);
-  // useEffect(() => { console.log(currentValue); }, [currentValue]);
+  // useEffect(() => { console.log(typing); }, [typing]);
 
   function reset() {
-    setCurrentValue('0');
+    setTyping('0');
     setOperator('');
     setTotal(0);
   }
@@ -36,31 +36,34 @@ export default function Calculator() {
       case 'operator':
         updateOperation();
         setOperator(clickedButtonValue);
-        setCurrentValue('0');
+        setTyping('0');
         break;
       case 'function':
         if (clickedButtonValue === 'Del') {
-          setCurrentValue(currentValue.slice(0, -1));
+          setTyping(typing.slice(0, -1));
         } else if (clickedButtonValue === 'Reset') {
           reset();
         }
         else if (clickedButtonValue === '=') {
-          updateOperation(true);
+          updateOperation();
+          // updateOperation(true);
+          setOperator('')
+          setTyping('0')
           // setOperator(clickedButtonValue);
           // setTotal(0);
-          // setCurrentValue(total.toString());
+          // setTyping(total.toString());
         }
         break;
     }
   };
 
   const updateValue = (clickedNumber: any) => {
-    if (currentValue.includes('.') && clickedNumber === '.') return;
+    if (typing.includes('.') && clickedNumber === '.') return;
 
-    if (currentValue.charAt(0) === '0') {
-      setCurrentValue(currentValue.substring(1).concat('', clickedNumber))
+    if (typing.charAt(0) === '0') {
+      setTyping(typing.substring(1).concat('', clickedNumber))
     } else {
-      setCurrentValue(currentValue.concat('', clickedNumber))
+      setTyping(typing.concat('', clickedNumber))
     }
   }
 
@@ -69,35 +72,24 @@ export default function Calculator() {
       case '+': return a + b
       case '-': return a - b
       case '/': return a / b
-      case '*': return a * b
+      case 'x': return a * b
       default: return 0
     }
   }
 
-  function updateOperation(showResult = false) {
-    const resolveCalc = calculate(total, operator, parseFloat(currentValue))
+  function updateOperation() {
+    const resolveCalc = calculate(total, operator, parseFloat(typing))
 
-    if (operator.length > 0) {
-      // console.log(operator);
-      setTotal(resolveCalc)
-
-      if (showResult) {
-        setTotal(0);
-        setCurrentValue(resolveCalc.toString());
-      }
+    if (operator.length > 0 && typing !== '0') {
+      setTotal(parseFloat(resolveCalc.toFixed(4)))
+      // setTotal(0);
+      // setTyping(resolveCalc.toString());
+    } else if (typing !== '0') {
+      setTotal(parseFloat(typing))
     }
-    else {
-      setTotal(parseFloat(currentValue))
-    }
-
-    // if (clickedButtonValue === '=') {
-    //   setCurrentValue(currentValue.toString())
-    // } else {
-    // }
   }
 
   return (
-
     <div className="wrapper">
       <div className='calculator flex flex-col gap-8'>
         {/* <div className="header">
@@ -121,11 +113,8 @@ export default function Calculator() {
           </div>
         </div> */}
         <div className="display flex flex-col text-right p-8 rounded-lg justify-end bg-[#181f32] text-white font-bold">
-          {/* {isTotal()} */}
-          {/* {total > 0 && <h3 className="text-2xl">{total} {operator}</h3>} */}
           <h3 className={'text-2xl transition-all' + ' ' + (total === 0 ? 'opacity-0 translate-y-2' : 'translate-y-1')}>{total} {operator}</h3>
-          {/* {{total > 0 ? <h3 className="text-2xl">{total} {operator}</h3>}} */}
-          <h2 className='text-3xl'>{currentValue}</h2>
+          <h2 className='text-3xl'>{typing}</h2>
         </div>
         <div className="keyboard bg-[#252d44] p-8 rounded-lg grid grid-cols-4 gap-5">
           <button value="7" onClick={handleClick} data-type="numeric" className="btn">7</button>
@@ -143,7 +132,7 @@ export default function Calculator() {
           <button value="." onClick={handleClick} data-type="numeric" className="btn">.</button>
           <button value="0" onClick={handleClick} data-type="numeric" className="btn">0</button>
           <button value="/" onClick={handleClick} data-type="operator" className="btn">/</button>
-          <button value="*" onClick={handleClick} data-type="operator" className="btn">x</button>
+          <button value="x" onClick={handleClick} data-type="operator" className="btn">x</button>
           <button value="Reset" onClick={handleClick} data-type="function" className="btn btn-blue col-span-2">Reset</button>
           <button value="=" onClick={handleClick} data-type="function" className="btn btn-red col-span-2">=</button>
         </div>
