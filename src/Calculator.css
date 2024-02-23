@@ -123,12 +123,12 @@
 
 .btn
 {
-  @apply rounded-md flex justify-center items-center bg-[#e8e4db] text-[#404355] text-2xl md:text-3xl font-bold p-2 md:p-3 shadow-[0_4px_0px_0px_#b3a296] -translate-y-1 transition-all
+  @apply rounded-md flex justify-center items-center bg-[#e8e4db] text-[#404355] text-2xl md:text-4xl font-bold p-2 md:p-3 shadow-[0_4px_0px_0px_#b3a296] -translate-y-1 transition-all;
 }
 
 .btn:hover
 {
-  @apply bg-[#c9c1ac]
+  @apply bg-[#c9c1ac];
 }
 
 .btn.clicked
@@ -138,7 +138,7 @@
 
 .btn-secondary
 {
-  @apply bg-[#647297] uppercase text-white shadow-[0_4px_0px_0px_#404e75] text-xl
+  @apply bg-[#647297] uppercase text-white shadow-[0_4px_0px_0px_#404e75] text-xl md:text-3xl
 }
 
 .btn-secondary:hover

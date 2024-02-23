@@ -2,28 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base
-{
-  html
-  {
+@layer base {
+  html {
     font-family: "League Spartan", system-ui, sans-serif;
   }
 }
 
-*
-{
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html
-{
+html {
   scroll-behavior: smooth;
 }
 
-body
-{
+body {
   background-color: #3b4664;
   color: white;
   @apply transition-colors duration-200;
@@ -32,13 +35,11 @@ body
 input,
 button,
 textarea,
-select
-{
+select {
   font: inherit;
 }
 
-.wrapper
-{
+.wrapper {
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
@@ -53,17 +54,8 @@ select
   gap: inherit;
   z-index: inherit;
   max-width: 600px;
-  
-  @media (max-width: 767px) {
-  max-width: 400px;
-}
-}
 
-#root
-{
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @media (max-width: 767px) {
+    max-width: 400px;
+  }
 }

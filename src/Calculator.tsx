@@ -87,7 +87,7 @@ export default function Calculator() {
 
   return (
     <div className="wrapper">
-      <div className='calculator w-full flex flex-col gap-8'>
+      <div className='calculator pt-5 pb-5 w-full flex flex-col gap-6'>
 
         <ThemeSwitcher />
 
