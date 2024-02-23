@@ -1,0 +1,140 @@
+body.retro
+{
+    @apply bg-[#e6e6e6] text-[#383730];
+
+    .switches
+    {
+        @apply bg-[#d3cdcd];
+    }
+
+    .display
+    {
+        @apply bg-[#eeeeee] text-[#383730]
+    }
+
+    .keyboard
+    {
+        @apply bg-[#d3cdcd]
+    }
+
+    .btn
+    {
+        @apply bg-[#e5e4e0] text-[#383730] shadow-[0_4px_0px_0px_#9f9e9b];
+    }
+
+    .btn:hover
+    {
+        @apply bg-[#dfdbd1]
+    }
+
+    .btn.clicked
+    {
+        @apply shadow-[0_0px_0px_0px_#9f9e9b]
+    }
+
+    .btn-secondary
+    {
+        @apply bg-[#3a8186] text-[#ffffff] shadow-[0_4px_0px_0px_#245558];
+    }
+
+    .btn-secondary:hover
+    {
+        @apply bg-[#317277]
+    }
+
+    .btn-secondary.clicked
+    {
+        @apply shadow-[0_0px_0px_0px_#245558]
+    }
+
+    .btn-tertiary
+    {
+        @apply bg-[#c85401] text-[#ffffff] shadow-[0_4px_0px_0px_#903e03];
+    }
+
+    .btn-tertiary:hover
+    {
+        @apply bg-[#b64d02]
+    }
+
+    .btn-tertiary.clicked
+    {
+        @apply shadow-[0_0px_0px_0px_#903e03]
+    }
+
+    input[type="radio"]:checked
+    {
+        @apply bg-[#c85401]
+    }
+}
+
+body.synthwave
+{
+    @apply bg-[#17062a] text-[#f7e337];
+
+    .switches
+    {
+        @apply bg-[#1e0836];
+    }
+
+    .display
+    {
+        @apply bg-[#1e0836] text-[#f7e337]
+    }
+
+    .keyboard
+    {
+        @apply bg-[#1e0836]
+    }
+
+    .btn
+    {
+        @apply bg-[#321d48] text-[#f7e337] shadow-[0_4px_0px_0px_#871d9e];
+    }
+
+    .btn:hover
+    {
+        @apply bg-[#41275c]
+    }
+
+    .btn.clicked
+    {
+        @apply shadow-[0_0px_0px_0px_#871d9e]
+    }
+
+    .btn-secondary
+    {
+        @apply bg-[#58077a] text-[#ffffff] shadow-[0_4px_0px_0px_#ba18f5];
+    }
+
+    .btn-secondary:hover
+    {
+        @apply bg-[#450161]
+    }
+
+    .btn-secondary.clicked
+    {
+        @apply shadow-[0_0px_0px_0px_#ba18f5]
+    }
+
+    .btn-tertiary
+    {
+        @apply bg-[#00decf] text-[#084b51] shadow-[0_4px_0px_0px_#6dfaf1];
+    }
+
+    .btn-tertiary:hover
+    {
+        @apply bg-[#00c4b7]
+    }
+
+    .btn-tertiary.clicked
+    {
+        @apply shadow-[0_0px_0px_0px_#6dfaf1]
+    }
+
+
+    input[type="radio"]:checked
+    {
+        @apply bg-[#00decf]
+    }
+}

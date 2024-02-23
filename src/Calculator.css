@@ -1,0 +1,177 @@
+.calculator .keyboard
+{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    "seven eight nine del"
+    "four five six plus"
+    "one two three minus"
+    "dot zero divide multiply"
+    "reset reset equal equal";
+  gap: 1.25rem;
+
+  @media (max-width: 767px)
+  {
+    gap: 1rem;
+  }
+}
+
+.calculator .keyboard button[value='0']
+{
+  grid-area: zero;
+}
+
+.calculator .keyboard button[value='1']
+{
+  grid-area: one;
+}
+
+.calculator .keyboard button[value='2']
+{
+  grid-area: two;
+}
+
+.calculator .keyboard button[value='3']
+{
+  grid-area: three;
+}
+
+.calculator .keyboard button[value='4']
+{
+  grid-area: four;
+}
+
+.calculator .keyboard button[value='5']
+{
+  grid-area: five;
+}
+
+.calculator .keyboard button[value='6']
+{
+  grid-area: six;
+}
+
+.calculator .keyboard button[value='7']
+{
+  grid-area: seven;
+}
+
+.calculator .keyboard button[value='8']
+{
+  grid-area: eight;
+}
+
+.calculator .keyboard button[value='9']
+{
+  grid-area: nine;
+}
+
+.calculator .keyboard button[value='Del']
+{
+  grid-area: del;
+}
+
+.calculator .keyboard button[value='Reset']
+{
+  grid-area: reset;
+}
+
+.calculator .keyboard button[value='-']
+{
+  grid-area: minus;
+}
+
+.calculator .keyboard button[value='x']
+{
+  grid-area: multiply;
+}
+
+.calculator .keyboard button[value='+']
+{
+  grid-area: plus;
+}
+
+.calculator .keyboard button[value='.']
+{
+  grid-area: dot;
+}
+
+.calculator .keyboard button[value='/']
+{
+  grid-area: divide;
+}
+
+.calculator .keyboard button[value='=']
+{
+  grid-area: equal;
+}
+
+.switches
+{
+  @apply bg-[#252d44];
+}
+
+.display
+{
+  @apply bg-[#181f32] text-white transition-colors;
+}
+
+.keyboard
+{
+  @apply bg-[#252d44] transition-colors;
+}
+
+.btn
+{
+  @apply rounded-md flex justify-center items-center bg-[#e8e4db] text-[#404355] text-2xl md:text-3xl font-bold p-2 md:p-3 shadow-[0_4px_0px_0px_#b3a296] -translate-y-1 transition-all
+}
+
+.btn:hover
+{
+  @apply bg-[#c9c1ac]
+}
+
+.btn.clicked
+{
+  @apply translate-y-0 shadow-[0_0px_0px_0px_#b3a296]
+}
+
+.btn-secondary
+{
+  @apply bg-[#647297] uppercase text-white shadow-[0_4px_0px_0px_#404e75] text-xl
+}
+
+.btn-secondary:hover
+{
+  @apply bg-[#53638e]
+}
+
+.btn-secondary.clicked
+{
+  @apply shadow-[0_0px_0px_0px_#404e75]
+}
+
+.btn-tertiary
+{
+  @apply bg-[#d13f30] uppercase text-white shadow-[0_4px_0px_0px_#94261a]
+}
+
+.btn-tertiary:hover
+{
+  @apply bg-[#b13427]
+}
+
+.btn-tertiary.clicked
+{
+  @apply shadow-[0_0px_0px_0px_#94261a]
+}
+
+input[type="radio"]
+{
+  @apply appearance-none w-5 rounded-full aspect-square transition-colors duration-200
+}
+
+input[type="radio"]:checked
+{
+  @apply bg-[#d13f30]
+}

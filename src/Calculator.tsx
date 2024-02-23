@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ThemeSwitcher from './ThemeSwitcher';
+import './Calculator.css'
 
 export default function Calculator() {
   const [total, setTotal] = useState<number>(0);
@@ -7,10 +8,6 @@ export default function Calculator() {
   const [typing, setTyping] = useState<string>('0');
   const [showResult, setShowResult] = useState<boolean>(false)
   const keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-
-  // useEffect(() => { console.log(total); }, [total]);
-  // useEffect(() => { console.log(operator); }, [operator]);
-  // useEffect(() => { console.log(typing); }, [typing]);
 
   function reset() {
     setTyping('0');
@@ -92,29 +89,27 @@ export default function Calculator() {
     <div className="wrapper">
       <div className='calculator w-full flex flex-col gap-8'>
 
-        <ThemeSwitcher/>
+        <ThemeSwitcher />
 
-        <div className={'display flex flex-col text-right p-8 rounded-lg justify-end bg-[#181f32] text-white font-bold' + ' ' + (showResult === true && 'flex-col-reverse')}>
+        <div className={'display flex flex-col text-right p-6 md:p-8 rounded-lg justify-end font-bold' + ' ' + (showResult === true && 'flex-col-reverse')}>
           <h3 className={(total === 0 ? 'opacity-0' : '') + ' ' + (showResult === true ? 'text-4xl' : 'text-2xl')}>{total} {operator}</h3>
           <h2 className={(showResult === true ? 'text-2xl opacity-0' : 'text-4xl')}>{typing}</h2>
         </div>
 
-        {/* <div className="keyboard bg-[#252d44] p-8 rounded-lg grid grid-cols-4 gap-5"> */}
-
-        <div className="keyboard bg-[#252d44] p-8 rounded-lg">
+        <div className="keyboard p-6 md:p-8 rounded-lg">
 
           {keys.map((key) => (
             <button key={key} value={key} onClick={handleClick} data-type="numeric" className="btn">{key}</button>
           ))}
 
-          <button value="Del" onClick={handleClick} data-type="function" className="btn btn-blue">Del</button>
+          <button value="Del" onClick={handleClick} data-type="function" className="btn btn-secondary">Del</button>
           <button value="+" onClick={handleClick} data-type="operator" className="btn">+</button>
           <button value="-" onClick={handleClick} data-type="operator" className="btn">-</button>
           <button value="." onClick={handleClick} data-type="numeric" className="btn">.</button>
           <button value="/" onClick={handleClick} data-type="operator" className="btn">/</button>
           <button value="x" onClick={handleClick} data-type="operator" className="btn">x</button>
-          <button value="Reset" onClick={handleClick} data-type="function" className="btn btn-blue">Reset</button>
-          <button value="=" onClick={handleClick} data-type="function" className="btn btn-red">=</button>
+          <button value="Reset" onClick={handleClick} data-type="function" className="btn btn-secondary">Reset</button>
+          <button value="=" onClick={handleClick} data-type="function" className="btn btn-tertiary">=</button>
         </div>
       </div>
     </div>
