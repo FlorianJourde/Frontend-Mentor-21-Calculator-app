@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Calculator() {
   const [total, setTotal] = useState<number>(0);
@@ -81,7 +82,7 @@ export default function Calculator() {
     const resolveCalc = calculate(total, operator, parseFloat(typing))
 
     if (operator.length > 0 && typing !== '0') {
-      setTotal(parseFloat(resolveCalc.toFixed(4)))
+      setTotal(parseFloat(resolveCalc.toFixed(2)))
     } else if (typing !== '0') {
       setTotal(parseFloat(typing))
     }
@@ -89,28 +90,9 @@ export default function Calculator() {
 
   return (
     <div className="wrapper">
-      <div className='calculator flex flex-col gap-8'>
+      <div className='calculator w-full flex flex-col gap-8'>
 
-        {/* <div className="header">
-          <div className="logo"></div>
-          <div className="theme">
-            <h2>Theme</h2>
-            <div className="flex">
-              <div>
-                <input type="radio" id="classic-theme" name="theme-switcher" checked />
-                <label htmlFor="classic-theme">Classic</label>
-              </div>
-              <div>
-                <input type="radio" id="synthwave-theme" name="theme-switcher" />
-                <label htmlFor="synthwave-theme">Synthwave</label>
-              </div>
-              <div>
-                <input type="radio" id="retro-theme" name="theme-switcher" />
-                <label htmlFor="retro-theme">Retro</label>
-              </div>
-            </div>
-          </div>
-        </div> */}
+        <ThemeSwitcher/>
 
         <div className={'display flex flex-col text-right p-8 rounded-lg justify-end bg-[#181f32] text-white font-bold' + ' ' + (showResult === true && 'flex-col-reverse')}>
           <h3 className={(total === 0 ? 'opacity-0' : '') + ' ' + (showResult === true ? 'text-4xl' : 'text-2xl')}>{total} {operator}</h3>

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base
 {
   html
@@ -41,7 +40,7 @@ select
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
-  max-width: 1400px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -168,7 +167,7 @@ select
 
 .btn
 {
-  @apply rounded-md flex justify-center align-middle bg-[#e8e4db] text-[#404355] text-3xl font-bold p-3 shadow-[0_4px_0px_0px_#b3a296] -translate-y-1 transition-all
+  @apply rounded-md flex justify-center items-center bg-[#e8e4db] text-[#404355] text-3xl font-bold p-3 shadow-[0_4px_0px_0px_#b3a296] -translate-y-1 transition-all
 }
 
 .btn:hover
@@ -183,7 +182,7 @@ select
 
 .btn-blue
 {
-  @apply bg-[#647297] uppercase text-white shadow-[0_4px_0px_0px_#404e75]
+  @apply bg-[#647297] uppercase text-white shadow-[0_4px_0px_0px_#404e75] text-xl
 }
 
 .btn-blue:hover
@@ -209,6 +208,16 @@ select
 .btn-red.clicked
 {
   @apply shadow-[0_0px_0px_0px_#94261a]
+}
+
+input[type="radio"]
+{
+  @apply appearance-none w-5 rounded-full aspect-square transition-colors duration-200
+}
+
+input[type="radio"]:checked
+{
+  @apply bg-[#d13f30]
 }
 
 /* :root {
