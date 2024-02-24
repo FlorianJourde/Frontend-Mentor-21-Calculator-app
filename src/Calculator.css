@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-areas:
-    "seven eight nine del"
+    "seven eight nine delete"
     "four five six plus"
     "one two three minus"
     "dot zero divide multiply"
@@ -66,12 +66,12 @@
   grid-area: nine;
 }
 
-.calculator .keyboard button[value='Del']
+.calculator .keyboard button[value='delete']
 {
-  grid-area: del;
+  grid-area: delete;
 }
 
-.calculator .keyboard button[value='Reset']
+.calculator .keyboard button[value='reset']
 {
   grid-area: reset;
 }

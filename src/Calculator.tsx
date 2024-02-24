@@ -1,13 +1,53 @@
 import { useState } from 'react'
-import ThemeSwitcher from './ThemeSwitcher';
+import Header from './components/Header';
+import Display from './components/Display';
 import './Calculator.css'
+import Keys from './components/Keys';
 
 export default function Calculator() {
   const [total, setTotal] = useState<number>(0);
   const [operator, setOperator] = useState<string>('');
   const [typing, setTyping] = useState<string>('0');
   const [showResult, setShowResult] = useState<boolean>(false)
-  const keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  const keys: string[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+  function handleClick(e: any) {
+    const clickedButton = (e.currentTarget as HTMLButtonElement);
+    const calculatorFunctionType = clickedButton.getAttribute('data-type')
+    const clickedButtonValue = clickedButton.value
+
+    animateButton(clickedButton);
+    setShowResult(false);
+
+    switch (calculatorFunctionType) {
+      case 'numeric':
+        resetIfNoOperator();
+        updateValue(clickedButtonValue);
+        break;
+      case 'operator':
+        updateOperation();
+        setOperator(clickedButtonValue);
+        setTyping('0');
+        break;
+      case 'delete':
+        resetIfNoOperator();
+        deleteChar();
+        break;
+      case 'reset':
+        reset();
+        break;
+      case 'equal':
+        updateOperation();
+        setOperator('')
+        setTyping('0')
+        setShowResult(true)
+        break;
+    }
+  };
+
+  function resetIfNoOperator() {
+    if (operator === '') reset();
+  }
 
   function reset() {
     setTyping('0');
@@ -22,46 +62,33 @@ export default function Calculator() {
     }, 150);
   }
 
-  const handleClick = (e: any) => {
-    const clickedButton = (e.currentTarget as HTMLButtonElement);
-    const calculatorFunctionType = clickedButton.getAttribute('data-type')
-    const clickedButtonValue = clickedButton.value
-
-    animateButton(clickedButton);
-    setShowResult(false);
-
-    switch (calculatorFunctionType) {
-      case 'numeric':
-        updateValue(clickedButtonValue);
-        break;
-      case 'operator':
-        updateOperation();
-        setOperator(clickedButtonValue);
-        setTyping('0');
-        break;
-      case 'function':
-        if (clickedButtonValue === 'Del') {
-          setTyping(typing.slice(0, -1));
-        } else if (clickedButtonValue === 'Reset') {
-          reset();
-        }
-        else if (clickedButtonValue === '=') {
-          updateOperation();
-          setOperator('')
-          setTyping('0')
-          setShowResult(true)
-        }
-        break;
+  function deleteChar() {
+    if (typing.length < 2) {
+      setTyping('0');
+    } else {
+      setTyping(typing.slice(0, -1));
     }
-  };
+  }
 
-  const updateValue = (clickedNumber: any) => {
+  function updateValue(clickedNumber: any) {
     if (typing.includes('.') && clickedNumber === '.') return;
 
     if (typing.charAt(0) === '0') {
       setTyping(typing.substring(1).concat('', clickedNumber))
     } else {
       setTyping(typing.concat('', clickedNumber))
+    }
+  }
+
+  function updateOperation() {
+    const resolveCalc = calculate(total, operator, parseFloat(typing))
+
+    if (typing !== '0') {
+      if (operator !== '') {
+        setTotal(parseFloat(resolveCalc.toFixed(2)))
+      } else {
+        setTotal(parseFloat(typing))
+      }
     }
   }
 
@@ -75,42 +102,20 @@ export default function Calculator() {
     }
   }
 
-  function updateOperation() {
-    const resolveCalc = calculate(total, operator, parseFloat(typing))
-
-    if (operator.length > 0 && typing !== '0') {
-      setTotal(parseFloat(resolveCalc.toFixed(2)))
-    } else if (typing !== '0') {
-      setTotal(parseFloat(typing))
-    }
-  }
-
   return (
     <div className="wrapper">
       <div className='calculator pt-5 pb-5 w-full flex flex-col gap-6'>
-
-        <ThemeSwitcher />
-
-        <div className={'display flex flex-col text-right p-6 md:p-8 rounded-lg justify-end font-bold' + ' ' + (showResult === true && 'flex-col-reverse')}>
-          <h3 className={(total === 0 ? 'opacity-0' : '') + ' ' + (showResult === true ? 'text-4xl' : 'text-2xl')}>{total} {operator}</h3>
-          <h2 className={(showResult === true ? 'text-2xl opacity-0' : 'text-4xl')}>{typing}</h2>
-        </div>
-
-        <div className="keyboard p-6 md:p-8 rounded-lg">
-
-          {keys.map((key) => (
-            <button key={key} value={key} onClick={handleClick} data-type="numeric" className="btn">{key}</button>
-          ))}
-
-          <button value="Del" onClick={handleClick} data-type="function" className="btn btn-secondary">Del</button>
-          <button value="+" onClick={handleClick} data-type="operator" className="btn">+</button>
-          <button value="-" onClick={handleClick} data-type="operator" className="btn">-</button>
-          <button value="." onClick={handleClick} data-type="numeric" className="btn">.</button>
-          <button value="/" onClick={handleClick} data-type="operator" className="btn">/</button>
-          <button value="x" onClick={handleClick} data-type="operator" className="btn">x</button>
-          <button value="Reset" onClick={handleClick} data-type="function" className="btn btn-secondary">Reset</button>
-          <button value="=" onClick={handleClick} data-type="function" className="btn btn-tertiary">=</button>
-        </div>
+        <Header />
+        <Display
+          showResult={showResult}
+          total={total}
+          operator={operator}
+          typing={typing}
+        />
+        <Keys
+          keys={keys}
+          handleClick={handleClick}
+        />
       </div>
     </div>
   )
