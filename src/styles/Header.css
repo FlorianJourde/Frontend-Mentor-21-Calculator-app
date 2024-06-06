@@ -62,9 +62,9 @@ body.retro
         @apply shadow-[0_0px_0px_0px_#903e03]
     }
 
-    input[type="radio"]:checked
+    .switches::before
     {
-        @apply bg-[#c85401]
+        @apply bg-[#c85401] -translate-x-1/2
     }
 }
 
@@ -131,10 +131,9 @@ body.synthwave
     {
         @apply shadow-[0_0px_0px_0px_#6dfaf1]
     }
-
-
-    input[type="radio"]:checked
+    
+    .switches::before
     {
-        @apply bg-[#00decf]
+        @apply bg-[#00decf] translate-x-[calc(-50%+15px)] 
     }
 }
