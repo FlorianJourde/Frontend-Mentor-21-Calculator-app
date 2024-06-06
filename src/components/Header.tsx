@@ -1,14 +1,28 @@
+import { useState } from 'react';
 import '../styles/Header.css'
 
 export default function ThemeSwitcher() {
+  const [theme, setTheme] = useState<number>(0);
 
-  const onChange = (e: any) => {
-    const clickedRadioButton = e.currentTarget;
-    const theme = clickedRadioButton.id;
+  const onClick = () => {
     const body = document.body;
 
-    body.className = "";
-    body.classList.add(theme)
+    switch (theme) {
+      case 0:
+        setTheme(1);
+        body.classList.add('retro');
+        break;
+      case 1:
+        setTheme(2);
+        body.className = '';
+        body.classList.add('synthwave');
+        break;
+      case 2:
+        setTheme(0);
+        body.className = '';
+        body.classList.remove();
+        break;
+    }
   }
 
   return (
@@ -22,17 +36,8 @@ export default function ThemeSwitcher() {
             <li>2</li>
             <li>3</li>
           </ul>
-          <ul className='switches flex gap-2 [&>li>input]:cursor-pointer [&>li]:flex p-1.5 rounded-3xl'>
-            <li>
-              <input type="radio" id="classic" name="theme-switcher" onChange={onChange} defaultChecked />
-            </li>
-            <li>
-              <input type="radio" id="retro" name="theme-switcher" onChange={onChange} />
-            </li>
-            <li>
-              <input type="radio" id="synthwave" name="theme-switcher" onChange={onChange} />
-            </li>
-          </ul>
+          <button onClick={onClick} className='switches flex  relative gap-2 [&>li>input]:cursor-pointer [&>li]:flex min-h-7 rounded-3xl w-full before:content-[""] before:height-1 before:h-4 before:w-4 before:top-1/2  before:left-1/2 before:translate-x-[calc(-50%-15px)] before:-translate-y-1/2 before:absolute before:transition-transform before:duration-400'>
+          </button>
         </div>
       </div>
     </div>

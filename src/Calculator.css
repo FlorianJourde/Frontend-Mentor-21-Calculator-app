@@ -166,9 +166,14 @@
   @apply shadow-[0_0px_0px_0px_#94261a]
 }
 
-input[type="radio"]
+.switches::before
 {
   @apply appearance-none w-5 rounded-full aspect-square transition-colors duration-200
+}
+
+.switches::before
+{
+  @apply bg-[#d13f30]
 }
 
 input[type="radio"]:checked
